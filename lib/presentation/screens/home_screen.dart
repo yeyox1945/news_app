@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:news_app/presentation/views/articles/articles_view.dart';
-import 'package:news_app/presentation/views/articles/favorites_view.dart';
+import 'package:news_app/presentation/views/articles_view.dart';
+import 'package:news_app/presentation/views/favorites_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.pageIndex});
