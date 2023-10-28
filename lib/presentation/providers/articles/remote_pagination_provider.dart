@@ -29,8 +29,8 @@ class ArticlesNotifier extends StateNotifier<List<ArticleEntity>> {
     isLoading = false;
   }
 
-  Future<void> refresh() async {
-    if (isLoading) return;
+  Future<List<ArticleEntity>> refresh() async {
+    if (isLoading) return [];
     currentPage = 0;
 
     isLoading = true;
@@ -39,5 +39,7 @@ class ArticlesNotifier extends StateNotifier<List<ArticleEntity>> {
 
     await Future.delayed(const Duration(milliseconds: 300));
     isLoading = false;
+
+    return articles;
   }
 }

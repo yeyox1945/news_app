@@ -28,7 +28,7 @@ class ArticlesNotifier extends StateNotifier<List<ArticleEntity>> {
     state = [...state, ...articles];
 
     isLoading = false;
-    if (articles.isEmpty) isLastPage = true;
+    if (articles.isEmpty || articles.length < 10) isLastPage = true;
   }
 
   Future<void> toggleFavorite(ArticleEntity article) async {
