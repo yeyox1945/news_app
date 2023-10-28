@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('News app'),
+        title: const Text('News'),
       ),
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
