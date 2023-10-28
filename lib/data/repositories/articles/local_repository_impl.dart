@@ -8,7 +8,7 @@ class LocalArticlesRepositoryImpl extends LocalArticlesRepository {
   LocalArticlesRepositoryImpl({required this.datasource});
 
   @override
-  Future<bool> isArticleFavorite(int articleId) => datasource.isArticleFavorite(articleId);
+  Future<bool> isArticleFavorite(String title) => datasource.isArticleFavorite(title);
 
   @override
   Future<List<ArticleEntity>> loadArticles({int limit = 10, offset = 0}) => datasource.loadArticles();

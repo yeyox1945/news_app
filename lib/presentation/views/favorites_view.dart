@@ -12,18 +12,21 @@ class FavoritesView extends ConsumerStatefulWidget {
 
 class _FavoritesViewState extends ConsumerState<FavoritesView> with AutomaticKeepAliveClientMixin {
   bool isLastPage = false;
+  bool isLoading = false;
 
   @override
   void initState() {
     super.initState();
 
-    ref.read(localArticlesProvider.notifier).loadNextPage();
+    loadNextPage();
   }
 
   void loadNextPage() async {
-    if (isLastPage) return;
+    if (isLastPage || isLoading) return;
 
+    isLoading = true;
     final articles = await ref.read(localArticlesProvider.notifier).loadNextPage();
+    isLoading = false;
 
     if (articles.isEmpty) isLastPage = true;
   }

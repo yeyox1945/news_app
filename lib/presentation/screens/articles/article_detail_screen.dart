@@ -14,7 +14,7 @@ class ArticleDetailScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     const textStyle = TextStyle(fontSize: 17);
 
-    final isFavoriteFuture = ref.watch(isFavoriteProvider(article.id));
+    final isFavoriteFuture = ref.watch(isFavoriteProvider(article.title));
 
     return Scaffold(
       appBar: AppBar(
@@ -26,9 +26,9 @@ class ArticleDetailScreen extends ConsumerWidget {
         title: const Text('Article'),
         actions: [
           IconButton(
-            onPressed: () {
-              ref.read(localArticlesProvider.notifier).toggleFavorite(article);
-              ref.invalidate(isFavoriteProvider(article.id));
+            onPressed: () async {
+              await ref.read(localArticlesProvider.notifier).toggleFavorite(article);
+              ref.invalidate(isFavoriteProvider(article.title));
             },
             icon: isFavoriteFuture.when(
               data: (isFavorite) => isFavorite

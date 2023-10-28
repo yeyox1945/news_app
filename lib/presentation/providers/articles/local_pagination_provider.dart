@@ -11,22 +11,16 @@ final localArticlesProvider = StateNotifierProvider<ArticlesNotifier, List<Artic
 
 class ArticlesNotifier extends StateNotifier<List<ArticleEntity>> {
   int currentPage = 0;
-  bool isLoading = false;
   final LocalArticlesRepository localArticlesRepository;
 
   ArticlesNotifier({required this.localArticlesRepository}) : super([]);
 
   Future<List<ArticleEntity>> loadNextPage() async {
-    if (isLoading) return [];
-
-    isLoading = true;
-    currentPage++;
     final List<ArticleEntity> articles =
         await localArticlesRepository.loadArticles(offset: currentPage * 10, limit: 10);
-    state = [...state, ...articles];
+    currentPage++;
 
-    await Future.delayed(const Duration(milliseconds: 300));
-    isLoading = false;
+    state = [...state, ...articles];
 
     return articles;
   }
@@ -40,7 +34,6 @@ class ArticlesNotifier extends StateNotifier<List<ArticleEntity>> {
       state = [...state];
       return;
     }
-
     state = [...state, article];
   }
 }

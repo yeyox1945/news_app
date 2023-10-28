@@ -24,10 +24,10 @@ class LocalArticlesDatasource extends LocalStorageDatasource {
   }
 
   @override
-  Future<bool> isArticleFavorite(int articleId) async {
+  Future<bool> isArticleFavorite(String title) async {
     final isar = await db;
 
-    final ArticleEntity? favoriteArticle = await isar.articleEntitys.filter().idEqualTo(articleId).findFirst();
+    final ArticleEntity? favoriteArticle = await isar.articleEntitys.filter().titleEqualTo(title).findFirst();
 
     return favoriteArticle != null;
   }
@@ -36,7 +36,7 @@ class LocalArticlesDatasource extends LocalStorageDatasource {
   Future<void> toggleFavorite(ArticleEntity article) async {
     final isar = await db;
 
-    final favoriteArticle = await isar.articleEntitys.filter().idEqualTo(article.id).findFirst();
+    final favoriteArticle = await isar.articleEntitys.filter().titleEqualTo(article.title).findFirst();
 
     // Delete from db
     if (favoriteArticle != null) {
