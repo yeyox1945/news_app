@@ -21,8 +21,10 @@ class RemoteArticlesDatasource extends ArticlesDatasource {
 
     final articlesResponse = ArticlesResponse.fromJson(resp.data);
 
-    final List<ArticleEntity> articles =
-        articlesResponse.articles.map((article) => ArticleMapper.articleToEntity(article)).toList();
+    final List<ArticleEntity> articles = articlesResponse.articles
+        .where((articleModel) => articleModel.title != '[Removed]')
+        .map((article) => ArticleMapper.articleToEntity(article))
+        .toList();
 
     return articles;
   }
