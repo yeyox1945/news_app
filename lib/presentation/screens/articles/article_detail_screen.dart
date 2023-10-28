@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/domain/entities/article_entity.dart';
+import 'package:news_app/presentation/providers/articles/local_is_favorite_provider.dart';
+import 'package:news_app/presentation/providers/articles/local_pagination_provider.dart';
 
-class ArticleDetailScreen extends StatelessWidget {
+class ArticleDetailScreen extends ConsumerWidget {
   const ArticleDetailScreen({super.key, required this.article});
 
   final ArticleEntity article;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     const textStyle = TextStyle(fontSize: 17);
+
+    final isFavoriteFuture = ref.watch(isFavoriteProvider(article.id));
 
     return Scaffold(
       appBar: AppBar(
@@ -21,8 +26,20 @@ class ArticleDetailScreen extends StatelessWidget {
         title: const Text('Article'),
         actions: [
           IconButton(
-            onPressed: () => {},
-            icon: const Icon(Icons.favorite_outline_rounded),
+            onPressed: () {
+              ref.read(localArticlesProvider.notifier).toggleFavorite(article);
+              ref.invalidate(isFavoriteProvider(article.id));
+            },
+            icon: isFavoriteFuture.when(
+              data: (isFavorite) => isFavorite
+                  ? const Icon(
+                      Icons.favorite,
+                      color: Colors.red,
+                    )
+                  : const Icon(Icons.favorite_border_rounded),
+              error: (error, stackTrace) => throw UnimplementedError(),
+              loading: () => const CircularProgressIndicator(),
+            ),
           ),
         ],
       ),
@@ -39,7 +56,12 @@ class ArticleDetailScreen extends StatelessWidget {
                 style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20),
-              Image.network(article.imageUrl),
+              Image.network(
+                article.imageUrl,
+                errorBuilder: (context, error, stackTrace) => Image.network(
+                  'https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg',
+                ),
+              ),
               const SizedBox(height: 20),
               const Text('Description:'),
               Text(

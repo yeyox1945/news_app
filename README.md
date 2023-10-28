@@ -1,6 +1,7 @@
 # news_app
 
 A new basic Flutter project to show a basic list of Articles from newsapi.org
+using Dio for remote and Isar database for local data persistence.
 
 # Dev
 

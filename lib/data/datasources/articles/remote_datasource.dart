@@ -1,7 +1,7 @@
 import 'package:news_app/config/constants/environment.dart';
 import 'package:news_app/data/mappers/article_mapper.dart';
 import 'package:news_app/data/models/articles/articles_response_model.dart';
-import 'package:news_app/domain/datasources/remote_articles_datasource.dart';
+import 'package:news_app/domain/datasources/articles/remote_datasource.dart';
 import 'package:news_app/domain/entities/article_entity.dart';
 import 'package:dio/dio.dart';
 

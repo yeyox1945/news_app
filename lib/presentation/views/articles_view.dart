@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:news_app/presentation/providers/articles/articles_providers.dart';
+import 'package:news_app/presentation/providers/articles/remote_pagination_provider.dart';
 import 'package:news_app/presentation/widgets/articles_list_view.dart';
 
 class ArticlesView extends ConsumerStatefulWidget {

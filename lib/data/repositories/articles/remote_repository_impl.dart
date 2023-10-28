@@ -1,6 +1,6 @@
-import 'package:news_app/domain/datasources/remote_articles_datasource.dart';
+import 'package:news_app/domain/datasources/articles/remote_datasource.dart';
 import 'package:news_app/domain/entities/article_entity.dart';
-import 'package:news_app/domain/repositories/articles_repository.dart';
+import 'package:news_app/domain/repositories/articles/remote_repository.dart';
 
 class ArticlesRepositoryImpl implements ArticlesRepository {
   final ArticlesDatasource datasource;

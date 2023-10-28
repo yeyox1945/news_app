@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/domain/entities/article_entity.dart';
-import 'package:news_app/presentation/providers/articles/article_repository_provider.dart';
+import 'package:news_app/presentation/providers/articles/remote_repository_provider.dart';
 
 final articlesProvider = StateNotifierProvider<ArticlesNotifier, List<ArticleEntity>>((ref) {
   final fetchMoreArticles = ref.watch(remoteRepositoryProvider).getArticles;

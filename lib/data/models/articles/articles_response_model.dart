@@ -43,7 +43,8 @@ class Article {
         title: json["title"],
         description: json["description"] ?? 'no-description',
         url: json["url"],
-        urlToImage: json["urlToImage"] ?? 'no-image',
+        urlToImage: json["urlToImage"] ??
+            'https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg',
         publishedAt: DateTime.parse(json["publishedAt"]),
         content: json["content"] ?? 'no-content',
       );
