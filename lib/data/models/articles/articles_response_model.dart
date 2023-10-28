@@ -45,7 +45,7 @@ class Article {
         url: json["url"],
         urlToImage: json["urlToImage"] ?? 'no-image',
         publishedAt: DateTime.parse(json["publishedAt"]),
-        content: json["content"],
+        content: json["content"] ?? 'no-content',
       );
 }
 

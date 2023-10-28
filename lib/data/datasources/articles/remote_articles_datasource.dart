@@ -5,11 +5,15 @@ import 'package:news_app/domain/datasources/articles_datasource.dart';
 import 'package:news_app/domain/entities/article_entity.dart';
 import 'package:dio/dio.dart';
 
-class RemoteArticlesDatasource implements ArticlesDatasource {
-  final dio = Dio(BaseOptions(baseUrl: 'https://newsapi.org/v2', queryParameters: {
-    'apiKey': Environment.newsApiKey,
-    'country': 'us',
-  }));
+class RemoteArticlesDatasource extends ArticlesDatasource {
+  final dio = Dio(BaseOptions(
+    baseUrl: 'https://newsapi.org/v2',
+    queryParameters: {
+      'apiKey': Environment.newsApiKey,
+      'country': 'us',
+      'pageSize': 10,
+    },
+  ));
 
   @override
   Future<List<ArticleEntity>> getArticles({int page = 1}) async {
@@ -18,7 +22,7 @@ class RemoteArticlesDatasource implements ArticlesDatasource {
     final articlesResponse = ArticlesResponse.fromJson(resp.data);
 
     final List<ArticleEntity> articles =
-        articlesResponse.articles.map((article) => ArticleMapper.ArticleToEntity(article)).toList();
+        articlesResponse.articles.map((article) => ArticleMapper.articleToEntity(article)).toList();
 
     return articles;
   }
