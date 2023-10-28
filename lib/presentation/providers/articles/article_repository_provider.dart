@@ -9,8 +9,8 @@ final remoteRepositoryProvider = Provider<ArticlesRepositoryImpl>(
   ),
 );
 
-final localRepositoryProvider = Provider<ArticlesRepositoryImpl>(
-  (ref) => ArticlesRepositoryImpl(
-    datasource: LocalArticlesDatasource(),
-  ),
-);
+// final localRepositoryProvider = Provider<ArticlesRepositoryImpl>(
+//   (ref) => ArticlesRepositoryImpl(
+//     datasource: Isa(),
+//   ),
+// );

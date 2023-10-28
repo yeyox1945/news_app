@@ -1,4 +1,10 @@
+import 'package:isar/isar.dart';
+
+part 'article_entity.g.dart';
+
+@collection
 class ArticleEntity {
+  Id id = Isar.autoIncrement;
   String title;
   String description;
   String content;
