@@ -6,6 +6,7 @@ import 'package:news_app/config/theme/app_theme.dart';
 
 void main() async {
   await dotenv.load(fileName: '.env');
+
   runApp(
     const ProviderScope(
       child: MainApp(),

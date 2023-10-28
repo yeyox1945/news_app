@@ -11,6 +11,8 @@ class ArticlesView extends ConsumerStatefulWidget {
 }
 
 class _ArticlesViewState extends ConsumerState<ArticlesView> with AutomaticKeepAliveClientMixin {
+  late final Stream stream;
+
   @override
   void initState() {
     super.initState();

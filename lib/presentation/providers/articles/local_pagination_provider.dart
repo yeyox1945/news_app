@@ -10,19 +10,25 @@ final localArticlesProvider = StateNotifierProvider<ArticlesNotifier, List<Artic
 });
 
 class ArticlesNotifier extends StateNotifier<List<ArticleEntity>> {
-  int currentPage = 0;
   final LocalArticlesRepository localArticlesRepository;
+  int currentPage = 0;
+  bool isLoading = false;
+  bool isLastPage = false;
 
   ArticlesNotifier({required this.localArticlesRepository}) : super([]);
 
-  Future<List<ArticleEntity>> loadNextPage() async {
+  Future<void> loadNextPage() async {
+    if (isLoading || isLastPage) return;
+
+    isLoading = true;
     final List<ArticleEntity> articles =
         await localArticlesRepository.loadArticles(offset: currentPage * 10, limit: 10);
     currentPage++;
 
     state = [...state, ...articles];
 
-    return articles;
+    isLoading = false;
+    if (articles.isEmpty) isLastPage = true;
   }
 
   Future<void> toggleFavorite(ArticleEntity article) async {

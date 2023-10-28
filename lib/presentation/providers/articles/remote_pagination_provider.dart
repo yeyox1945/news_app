@@ -28,4 +28,16 @@ class ArticlesNotifier extends StateNotifier<List<ArticleEntity>> {
     await Future.delayed(const Duration(milliseconds: 300));
     isLoading = false;
   }
+
+  Future<void> refresh() async {
+    if (isLoading) return;
+    currentPage = 0;
+
+    isLoading = true;
+    final List<ArticleEntity> articles = await fetchMoreArticles(page: 1);
+    state = [...articles];
+
+    await Future.delayed(const Duration(milliseconds: 300));
+    isLoading = false;
+  }
 }
