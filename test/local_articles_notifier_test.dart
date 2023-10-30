@@ -61,8 +61,8 @@ void main() async {
     test(
       'Gets articles using loadArticles method on repository dependency once',
       () async {
-        sut.loadNextPage(); // Act
         when(() => mockRepository.loadArticles()).thenReturn(() async => []); // Arrange
+        sut.loadNextPage(); // Act
         verify(() => mockRepository.loadArticles()).called(1); // Assert
       },
     );
