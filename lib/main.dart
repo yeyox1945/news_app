@@ -5,8 +5,8 @@ import 'package:news_app/config/router/app_router.dart';
 import 'package:news_app/config/theme/app_theme.dart';
 
 void main() async {
-  await dotenv.load(fileName: '.env');
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: '.env');
 
   runApp(
     const ProviderScope(
