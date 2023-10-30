@@ -4,17 +4,13 @@ import 'package:news_app/data/repositories/articles/local_repository_impl.dart';
 import 'package:news_app/domain/entities/article_entity.dart';
 import 'package:news_app/presentation/providers/articles/local_pagination_provider.dart';
 
-// class MockLocalArticlesDatasource extends Mock implements LocalArticlesDatasource {}
-
 class MockLocalArticlesRepositoryImpl extends Mock implements LocalArticlesRepositoryImpl {}
 
 void main() async {
   late ArticlesNotifier sut;
-  // late MockLocalArticlesDatasource mockDatasource;
   late MockLocalArticlesRepositoryImpl mockRepository;
 
   setUp(() {
-    // mockDatasource = MockLocalArticlesDatasource();
     mockRepository = MockLocalArticlesRepositoryImpl();
     sut = ArticlesNotifier(localArticlesRepository: mockRepository);
   });
