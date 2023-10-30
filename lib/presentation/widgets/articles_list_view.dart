@@ -34,19 +34,16 @@ class _ArticlesListViewState extends State<ArticlesListView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red,
-      child: ListView.separated(
-        controller: scrollController,
-        physics: const BouncingScrollPhysics(),
-        itemCount: widget.articles.length,
-        itemBuilder: (BuildContext context, int index) {
-          final article = widget.articles[index];
+    return ListView.separated(
+      controller: scrollController,
+      physics: const BouncingScrollPhysics(),
+      itemCount: widget.articles.length,
+      itemBuilder: (BuildContext context, int index) {
+        final article = widget.articles[index];
 
-          return _ArticleTile(article: article);
-        },
-        separatorBuilder: (context, index) => const SizedBox(height: 15),
-      ),
+        return _ArticleTile(article: article);
+      },
+      separatorBuilder: (context, index) => const SizedBox(height: 15),
     );
   }
 
