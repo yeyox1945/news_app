@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:isolate';
 import 'package:flutter/material.dart';
 import 'package:flutter_isolate/flutter_isolate.dart';
@@ -15,8 +14,6 @@ class ArticlesView extends ConsumerStatefulWidget {
 }
 
 class _ArticlesViewState extends ConsumerState<ArticlesView> with AutomaticKeepAliveClientMixin {
-  late final Stream stream;
-
   @override
   void initState() {
     super.initState();
